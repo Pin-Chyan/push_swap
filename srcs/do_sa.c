@@ -10,4 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
+void  sa(t_frame *stacks)
+{
+    int   tmp;
+  
+    if (stacks->a && stacks->a != stacks->a->next)
+    {
+        tmp = stacks = stacks->a->next->data;
+        stacks->a->data = stacks->a->next->data;
+        stacks->a->next->data-> = tmp;
+        add_list(stacks,SA);
+    }
+}
