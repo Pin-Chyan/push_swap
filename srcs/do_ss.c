@@ -6,14 +6,14 @@
 /*   By: pitsai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 16:25:53 by pitsai            #+#    #+#             */
-/*   Updated: 2019/07/20 16:25:55 by pitsai           ###   ########.fr       */
+/*   Updated: 2019/07/29 15:02:37 by pitsai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void      ss(t_frame *stacks)
+void	ss(t_frame *stacks)
 {
-          sa(stacks);
-          sb(stacks);
+	sa(stacks);
+	sb(stacks);
 }
