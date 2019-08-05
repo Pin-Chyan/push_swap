@@ -6,7 +6,7 @@
 /*   By: pitsai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 16:09:03 by pitsai            #+#    #+#             */
-/*   Updated: 2019/07/26 16:44:09 by pitsai           ###   ########.fr       */
+/*   Updated: 2019/08/05 15:21:36 by pitsai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,5 @@ void				ft_rr(t_frame *stack);
 void				ft_rra(t_frame *stack);
 void				ft_rrb(t_frame *stack);
 void				ft_rrr(t_frame *stack);
+
+void				error_exit(void);

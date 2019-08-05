@@ -1,12 +1,12 @@
-/* ************************************************************************** */
+//* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_sa.c                                            :+:      :+:    :+:   */
+/*   do_swap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pitsai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/20 16:25:42 by pitsai            #+#    #+#             */
-/*   Updated: 2019/07/29 15:03:52 by pitsai           ###   ########.fr       */
+/*   Created: 2019/07/20 16:26:55 by pitsai            #+#    #+#             */
+/*   Updated: 2019/08/05 15:19:33 by pitsai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,23 @@ void	sa(t_frame *stacks)
 		stacks->a->next->data-> = tmp;
 		add_list(stacks,SA);
 	}
+}
+
+void	sb(t_frame *stacks)
+{
+	int tmp;
+
+	if(stacks->b && stacks->b != stacks->b->next)
+	{
+		tmp = stacks = stacks->b->next->data;
+		stacks->b->data = stacks->b->next->data;
+		stacks->b->next->data-> = tmp;
+		add_list(stacks,SB);
+	}
+}
+
+void	ss(t_frame *stacks)
+{
+	sa(stacks);
+	sb(stacks);
 }
