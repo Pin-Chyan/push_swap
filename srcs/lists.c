@@ -6,7 +6,7 @@
 /*   By: pitsai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 15:15:40 by pitsai            #+#    #+#             */
-/*   Updated: 2019/08/05 16:55:18 by pitsai           ###   ########.fr       */
+/*   Updated: 2019/08/06 11:27:25 by pitsai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,11 @@ void	add_list(t_frame *stacks, int move)
 
 void	delete_moves(t_frame *stack, t_moves *moves)
 {
+	if(stacks->moves)
+	{
+		move->prev-next = move->next;
+		move->next->prev = move->prev;
+		free(move);
+		move = NULL;
+	}
 }
