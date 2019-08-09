@@ -6,7 +6,7 @@
 /*   By: pitsai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 16:09:03 by pitsai            #+#    #+#             */
-/*   Updated: 2019/08/06 17:35:17 by pitsai           ###   ########.fr       */
+/*   Updated: 2019/08/09 00:38:38 by pitsai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_frame
 
 // Operations
 
+// do_swaps.c
 void				ft_sa(t_frame *stack);
 void				ft_sb(t_frame *stack);
 void				ft_ss(t_frame *stack);
@@ -56,7 +57,20 @@ void				ft_rra(t_frame *stack);
 void				ft_rrb(t_frame *stack);
 void				ft_rrr(t_frame *stack);
 
-void				error_exit(void);
-
 void				add_list(t_frame *stacks, int move);
 void				delete_moves(t_frame *stack, t_moves *moves);
+
+// adding.c
+void				add_to_top(t_list **head, int data, t_frame *stacks);
+void				add_to_tail(t_list *head, int data, t_frame *stacks);
+
+// removing.c
+void				remove_elem(t_list **head, t_list *elem);
+void				remove_head(t_list **head);
+
+// error1.c
+void				free_moves(t_frame *stacks);
+void				free_stacks(t_frame *stacks);
+void				error_exit(t_frame *stacks);
+void				exot_push_swap(t_frame *stacks);
+
