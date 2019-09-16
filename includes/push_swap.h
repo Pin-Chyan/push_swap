@@ -5,72 +5,156 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pitsai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/26 16:09:03 by pitsai            #+#    #+#             */
-/*   Updated: 2019/08/09 00:38:38 by pitsai           ###   ########.fr       */
+/*   Created: 2019/08/19 14:55:17 by pitsai            #+#    #+#             */
+/*   Updated: 2019/08/19 14:55:18 by pitsai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft/libft.h"
 
-typedef struct		s_list
+#include "../libft/includes/libft.h"
+#include "../libft/includes/get_next_line.h"
+#include <stdlib.h>
+#include <unistd.h>
+
+#define MAX_INT 2147483647
+#define MIN_INT -2147483648
+/*
+# define COLOUR_RED "\e[31m"
+# define COLOUR_GREEN "\e[32m"
+# define COLOUR_ORANGE "\e[33m"
+# define COLOUR_BLUE "\e[34m"
+# define COLOUR_MAGENTA "\e[35m"
+# define COLOUR_CYAN "\e[36m"
+# define COLOUR_GREY "\e[90m"
+# define COLOUR_YELLOW "\e[93m"
+# define COLOUR_END "\e[0m"
+*/
+
+typedef struct      s_stack
 {
-	int				data;
-	struct s_clist	*next;
-	struct s_clist	*prev;
-}					t_list;
+    int             value;
+    struct s_stack  *next;
+}                   t_stack;
 
-typedef struct		s_moves
-{
-	int				move:8;
-	struct s_move	*next;
-	struct s_move	*prev;
-}					t_moves;
+// do_push.c
 
-// Stacks *A & *B
+void        push_a(t_stack **head_b, t_stack **head_a);
+void        push_b(t_stack **head_b, t_stack **head_a);
 
-typedef struct		s_frame
-{
-	t_list			*a;
-	t_list			*b;
-	t_moves			*moves;
-	short			flags;
-	short			p;
-}					t_frame;
+// do_swap.c
 
-// Operations
+void        ft_swap(t_stack **head);
+void        swap_a(t_stack **head);
+void        swap_b(t_stack **head);
+void        swap_both(t_stack **head_a, t_stack **head_b);
 
-// do_swaps.c
-void				ft_sa(t_frame *stack);
-void				ft_sb(t_frame *stack);
-void				ft_ss(t_frame *stack);
+// do_rotate.c
 
-void				ft_pa(t_frame *stack);
-void				ft_pb(t_frame *stack);
+void	    ft_rotate(t_stack **head);
+void	    rotate_a(t_stack **head);
+void    	rotate_b(t_stack **head);
+void	    rotate_both(t_stack **head_a, t_stack **head_b);
 
-void				ft_ra(t_frame *stack);
-void				ft_rb(t_frame *stack);
-void				ft_rr(t_frame *stack);
+// do_reverse_rotate.c
 
-void				ft_rra(t_frame *stack);
-void				ft_rrb(t_frame *stack);
-void				ft_rrr(t_frame *stack);
+void	    ft_rev_rotate(t_stack **head);
+void	    rev_rotate_a(t_stack **head);
+void	    rev_rotate_b(t_stack **head);
+void	    rev_rotate_both(t_stack **head_a, t_stack **head_b);
 
-void				add_list(t_frame *stacks, int move);
-void				delete_moves(t_frame *stack, t_moves *moves);
+// error.c
 
-// adding.c
-void				add_to_top(t_list **head, int data, t_frame *stacks);
-void				add_to_tail(t_list *head, int data, t_frame *stacks);
+void	    ft_error(void);
+int		    check_num(int argc, char **argv);
+int		    bigger_int(int argc, char **argv);
+int		    check_dup(int argc, char **argv);
 
-// removing.c
-void				remove_elem(t_list **head, t_list *elem);
-void				remove_head(t_list **head);
 
-// error1.c
-void				free_moves(t_frame *stacks);
-void				free_stacks(t_frame *stacks);
-void				error_exit(t_frame *stacks);
-void				exot_push_swap(t_frame *stacks);
 
+// checker_instruct.c
+
+int		    correct_phrase(char *op);
+void	    do_cmd(int cmd, t_stack **a, t_stack **b);
+
+// checker_flags.c
+
+int		    check_visual(char **argv);
+void	    del_argv(int argc, char **argv);
+
+// checker_commands.c
+
+void	    do_pa(t_stack **head_b, t_stack **head_a);
+void	    do_pb(t_stack **head_b, t_stack **head_a);
+void	    do_ss_ch(t_stack **head_b, t_stack **head_a);
+void	    do_rr(t_stack **head_a, t_stack **head_b);
+void	    do_rrr(t_stack **head_a, t_stack **head_b);
+
+// utilities.c
+
+void	    clean(t_stack *head);
+t_stack	    *stnew(int num);
+void	    stiter(t_stack *stack, void (*f)(t_stack *elem));
+void	    print_a(t_stack **a, int num);
+void	    print_b(t_stack **b, int num);
+void	    print_all(t_stack **a, t_stack **b);
+
+// position.c
+
+int	        get_num(t_stack *head, int index);
+int	        get_check_pos(t_stack *head, int num, int index);
+int	        negative(int head, int num);
+int	        positive(int head, int num);
+int	        get_closest(t_stack *head, int num);
+
+// move_position.c
+
+int		    f_steps_ab(t_stack *head, int num, int *type);
+void	    f_move_to_a(t_stack **a, t_stack **b, int num);
+void	    do_ss(t_stack **a, t_stack **b, int count, int type);
+void	    f_move_stack_a(t_stack **head, int type, int count);
+int		    get_pos_in_a(t_stack *head, int num);
+
+// move_position_2.c
+
+void	    f_move_stack_b(t_stack **head, int type, int count);
+int		    f_mix_steps(int sa, int sb);
+void	    do_ab_steps(t_stack **a, t_stack **b, int num);
+int	    	b_mix_steps(t_stack *head_a, t_stack *head_b);
+void    	f_move_ab(t_stack **a, t_stack **b);
+
+// solver.c
+
+int		    get_steps(t_stack *head, int num);
+int	    	get_steps_ab(t_stack *head, int num, int *type);
+int	    	f_ab_steps(t_stack *a, t_stack *b, int num);
+int	    	mix_steps(t_stack *head_a, t_stack *head_b);
+void	    solve(t_stack **head_a, t_stack **head_b);
+
+//solver_2.c
+
+int		    get_min(t_stack *a);
+int	    	get_steps_begin(t_stack *head, int index, int *type);
+void    	beginning(t_stack **a);
+int	    	is_sorted(t_stack *head);
+void    	solve_mini(t_stack **a);
+
+// represent_stack.c
+
+void	    print_stack(t_stack *stack, t_stack *stack_b);
+int		    len_stack(t_stack *head);
+t_stack	    *create_stack_from_arg(int argc, char **argv, int flag);
+t_stack	    *load_stack(int argc, char **argv);
+t_stack	    *create_stack(int argc, char **argv, int type);
+
+// checker_main.c
+
+int         read_cmd(t_stack **a, t_stack **b, char **cmd);
+void	    if_three(int argc, char **argv);
+void	    check_in(int argc, char **argv, int *flag);
+void    	sorted_check(t_stack *a, t_stack *b);
+
+//
+
+#endif
